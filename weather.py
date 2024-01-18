@@ -1,10 +1,11 @@
+import os
 import requests
-from config import OPENWEATHER_API_KEY
 
 BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'
 
 def get_weather_by_zip(zip_code, country_code='US'):
-    url = f"{BASE_URL}?zip={zip_code},{country_code}&appid={OPENWEATHER_API_KEY}"
+    weather_key = os.getenv('OPENWEATHER_API_KEY')
+    url = f"{BASE_URL}?zip={zip_code},{country_code}&appid={weather_key}"
     response = requests.get(url)
 
     # check if the request was successful
